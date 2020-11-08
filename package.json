@@ -1,0 +1,19 @@
+{
+  "name": "vtuberspam",
+  "version": "1.0.0",
+  "description": "Autospam degli stream delle vtuber pog",
+  "main": "index.js",
+  "scripts": {
+    "test": "vt"
+  },
+  "keywords": [
+    "vtuber",
+    "spam"
+  ],
+  "author": "A weeb",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "googleapis": "^64.0.0"
+  }
+}
