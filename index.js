@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 var {google} = require('googleapis');
 const youtube = google.youtube({
     version: 'v3',
-    auth: process.env.yt_token
+    auth: process.env.YT_TOKEN
 });
 const vtuber = require('./vtuber.json');
 const client = new Discord.Client();
@@ -56,4 +56,4 @@ client.on('message', async message => {
     }
 });
 
-client.login(process.env.ds_token);
+client.login(process.env.DS_TOKEN);
