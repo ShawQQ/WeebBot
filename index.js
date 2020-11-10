@@ -54,7 +54,7 @@ client.on('message', async message => {
             }, err => {
                 console.log("Errore nell'esecuzione:"+err);
             }).catch(error => {
-                return message.channel.send("Richiesta rifiutata da big G per il seguente motivo: "+error);
+                return message.channel.send("Richiesta non riuscita");
             });
         }
     }else{
