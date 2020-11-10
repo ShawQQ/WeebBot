@@ -38,7 +38,7 @@ client.on('message', async message => {
                 if(response.data.items.length == 0){
                     return message.channel.send("Nessuna live in corso");
                 }
-                var message = '';
+                var sendMsg = '';
                 var videoId = response.data.items[0].id.videoId;
                 var url = `https://youtube.com/watch?v=${videoId}`;
                 //TODO: controllare che coco non tiri fuori live a caso
@@ -46,9 +46,10 @@ client.on('message', async message => {
                     return message.channel.send("Nessuna live in corso")
                 }
                 if(message.author.id == config.monsterWeeb){
-                    message = `<@${config.danielito}> PogPogPogPogPog <@${config.danielito}>\n`;
+                    sendMsg = `<@${config.danielito}> PogPogPogPogPog <@${config.danielito}>\n`;
                 }
-                message += url;
+                sendMsg += url;
+                console.log(sendMsg);
                 return message.channel.send(message);
             }, err => {
                 console.log("Errore nell'esecuzione:"+err);
