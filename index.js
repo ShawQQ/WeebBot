@@ -49,8 +49,7 @@ client.on('message', async message => {
                     sendMsg = `<@${config.danielito}> PogPogPogPogPog <@${config.danielito}>\n`;
                 }
                 sendMsg += url;
-                console.log(sendMsg);
-                return message.channel.send(message);
+                return message.channel.send(sendMsg);
             }, err => {
                 console.log("Errore nell'esecuzione:"+err);
             }).catch(error => {
