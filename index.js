@@ -38,13 +38,18 @@ client.on('message', async message => {
                 if(response.data.items.length == 0){
                     return message.channel.send("Nessuna live in corso");
                 }
+                var message = '';
                 var videoId = response.data.items[0].id.videoId;
                 var url = `https://youtube.com/watch?v=${videoId}`;
                 //TODO: controllare che coco non tiri fuori live a caso
                 if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg"){
                     return message.channel.send("Nessuna live in corso")
                 }
-                return message.channel.send(url);
+                if(message.author.id == config.monsterWeeb){
+                    message = `<@${config.danielito}> PogPogPogPogPog <@${config.danielito}>\n`;
+                }
+                message += url;
+                return message.channel.send(message);
             }, err => {
                 console.log("Errore nell'esecuzione:"+err);
             }).catch(error => {
