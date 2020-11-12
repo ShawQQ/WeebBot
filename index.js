@@ -80,6 +80,7 @@ async function sendLive(){
                 var mess = '';
                 for(var message of result.found){
                     mess += message + "\n";
+                    console.log("Message:"+message);
                 }
                 return channel.send(mess);
             }
@@ -88,5 +89,6 @@ async function sendLive(){
         });
     return;
     });
+    console.log("Ultimo timeout registrato:"+timeout);
     setTimeout(sendLive, timeout);
 }
