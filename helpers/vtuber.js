@@ -46,7 +46,6 @@ class Vtuber{
                 });
             }else if(scheduleHour > hour){
                 var diff = (scheduleHour - hour) * 60 * 1000;
-                found.push("test");
                 break;
             }
         }
