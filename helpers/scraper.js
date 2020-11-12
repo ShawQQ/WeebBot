@@ -45,8 +45,8 @@ function formatSchedule(simpleSchedule){
         }else if(value.match(/\d\d:\d\d/)){
             //convert timeslot from JST to UTC
             var jpDate = moment.tz([moment().year(), moment().month(), moment().date(), value.substr(0, 2), value.substr(3, 5)], "Asia/Tokyo");
-            var utcDate = jpDate.clone().tz("Europe/Rome");
-            schedule[i] = utcDate.format('HH:mm');
+            // var utcDate = jpDate.clone().tz("Europe/Rome");
+            schedule[i] = jpDate.utc().format('HH:mm');
         }else{
             if(schedule[i - 1] !== null){
                 schedule[i - 1] = undefined;
@@ -72,6 +72,7 @@ function formatSchedule(simpleSchedule){
         let secondSlot = parseInt(b[0].substr(0,2)) * 60 + parseInt(b[0].substr(3,5));
         return firstSlot - secondSlot;
     })
+    console.log(newSchedule);
     return newSchedule;
 }
 

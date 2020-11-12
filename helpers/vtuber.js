@@ -11,7 +11,8 @@ class Vtuber{
 
     async init(schedule){
         //current hour
-        var now = moment().format('HH:mm');
+        var now = moment().utc().format('HH:mm');
+        console.log(now);
         var hour = parseInt(now.substr(0, 2)) * 60 + parseInt(now.substr(3, 5));
         var found = [];
         for(let i = 0; i < schedule.length; i++){
