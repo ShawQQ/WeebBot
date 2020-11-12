@@ -72,7 +72,6 @@ function formatSchedule(simpleSchedule){
         let secondSlot = parseInt(b[0].substr(0,2)) * 60 + parseInt(b[0].substr(3,5));
         return firstSlot - secondSlot;
     })
-    console.log(newSchedule);
     return newSchedule;
 }
 
