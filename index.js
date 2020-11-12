@@ -15,8 +15,6 @@ for(const file of commandFiles){
 }
 
 client.once('ready', () => {
-    const channel = client.channels.cache.get(config.channel_id);
-    if(!channel) return console.error("Canale non trovato");
     let timeout = 15 * 1000;
     setTimeout(sendLive, timeout);
 });
@@ -71,6 +69,8 @@ client.once('ready', () => {
 client.login(process.env.DS_TOKEN);
 
 async function sendLive(){
+    const channel = client.channels.cache.get(config.channel_id);
+    if(!channel) return console.error("Canale non trovato");
     var scraper = new Scraper();
     await scraper.init().then(async () => {
         var vtuber = new Vtuber();
