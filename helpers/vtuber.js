@@ -9,7 +9,7 @@ const moment = require("moment-timezone");
 class Vtuber{
     constructor(){}
 
-    async init(schedule){
+    async init(schedule, timeout){
         //current hour
         var now = moment().utc().format('HH:mm');
         console.log(now);
@@ -18,7 +18,7 @@ class Vtuber{
         for(let i = 0; i < schedule.length; i++){
             //schedule hour
             var scheduleHour = parseInt(schedule[i][0].substr(0, 2)) * 60 + parseInt(schedule[i][0].substr(3, 5));
-            if(scheduleHour == hour){
+            if((hour - scheduleHour) >= 0 && (hour - scheduleHour) <= (timeout / (60 * 1000))){
                 if(!(schedule[i][1] in VTUBER_LIST)){
                     console.warn("Vtuber non trovata");
                     continue;
@@ -45,16 +45,10 @@ class Vtuber{
                 }).catch(error => {
                     console.error(error);
                 });
-            }else if(scheduleHour > hour){
-                var diff = (scheduleHour - hour) * 60 * 1000;
-                break;
             }
         }
 
-        return {
-            diff: diff !== undefined ? diff : 5 * 60 * 1000,
-            found: found
-        };
+        return found;
     }
 }
 

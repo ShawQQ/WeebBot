@@ -15,8 +15,8 @@ for(const file of commandFiles){
 }
 
 client.once('ready', () => {
-    let timeout = 15 * 1000;
-    setTimeout(sendLive, timeout);
+    let timeout = 5 * 60 * 1000;
+    sendLive(timeout);
 });
 
 
@@ -68,27 +68,26 @@ client.once('ready', () => {
 
 client.login(process.env.DS_TOKEN);
 
-async function sendLive(){
+async function sendLive(timeout){
     const channel = client.channels.cache.get(config.channel_id);
     if(!channel) return console.error("Canale non trovato");
     var scraper = new Scraper();
-    await scraper.init().then(async () => {
-        var vtuber = new Vtuber();
-        await vtuber.init(scraper.formatedSchedule).then((result) => {
-            timeout = result.diff;
-            if(result.found.length != 0){
-                var mess = '';
-                for(var message of result.found){
-                    mess += message + "\n";
-                    console.log("Message:"+message);
+    setInterval(async () => {
+        await scraper.init().then(async () => {
+            var vtuber = new Vtuber();
+            await vtuber.init(scraper.formatedSchedule, timeout).then((result) => {
+                if(result.length != 0){
+                    var mess = '';
+                    for(var message of result){
+                        mess += message + "\n";
+                        console.log("Message:"+message);
+                    }
+                    return channel.send(mess);
                 }
-                return channel.send(mess);
-            }
-            console.log("Nessuna live trovata, riprovo tra:"+timeout);
-            return;
+                console.log("Nessuna live trovata, riprovo tra:"+timeout);
+                return;
+            });
+        return;
         });
-    return;
-    });
-    console.log("Ultimo timeout registrato:"+timeout);
-    setTimeout(sendLive, timeout);
+    }, timeout)
 }
