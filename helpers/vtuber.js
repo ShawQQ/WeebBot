@@ -34,6 +34,7 @@ class Vtuber{
                         "video"
                     ]
                 }).then(response => {
+                    console.log("Vtuber trovata:"+VTUBER_LIST[schedule[i][1]]);
                     if(response.data.items.length == 0) return;
                     var videoId = response.data.items[0].id.videoId;
                     if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg") return;
