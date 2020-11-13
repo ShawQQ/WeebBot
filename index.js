@@ -82,6 +82,7 @@ async function sendLive(timeout){
                         mess += message + "\n";
                         console.log("Message:"+message);
                     }
+                    mess +=`<@${config.monsterWeeb}> <@${config.danielito}>`
                     return channel.send(mess);
                 }
                 console.log("Nessuna live trovata, riprovo tra:"+timeout);
