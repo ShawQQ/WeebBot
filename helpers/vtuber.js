@@ -39,7 +39,8 @@ class Vtuber{
                     var videoId = response.data.items[0].id.videoId;
                     if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg") return;
                     var url = `https://youtube.com/watch?v=${videoId}`;
-                    found.push(`${VTUBER_LIST[schedule[i][1]]} è in live!\n${url}`);
+                    var name = VTUBER_LIST[schedule[i][1]].split(" ");
+                    found.push(`${name[0]} è in live!\n${url}`);
                     return;
                 }, err => {
                     console.log("Errore nell'esecuzione:"+err);
