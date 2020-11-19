@@ -32,7 +32,7 @@ class Vtuber{
         var found = [];
         var retry = 2;
         while(retry != 0){
-            for(search in vtubers){
+            for(var search in vtubers){
                 await youtube.search.list({
                     "part": [
                         "snippet"
