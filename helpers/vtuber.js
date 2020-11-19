@@ -12,36 +12,47 @@ class Vtuber{
     async init(schedule, timeout){
         //current hour
         var now = moment().utc().format('HH:mm');
-        console.log(now);
         var hour = parseInt(now.substr(0, 2)) * 60 + parseInt(now.substr(3, 5));
-        var found = [];
+        var vtubers = [];
+        console.log(now);
+
         for(let i = 0; i < schedule.length; i++){
             //schedule hour
             var scheduleHour = parseInt(schedule[i][0].substr(0, 2)) * 60 + parseInt(schedule[i][0].substr(3, 5));
             if((hour - scheduleHour) >= 0 && (hour - scheduleHour) <= (timeout / (60 * 1000))){
                 if(!(schedule[i][1] in VTUBER_LIST)){
-                    console.warn("Vtuber non trovata");
+                    console.warn("Vtuber non trovata "+VTUBER_LIST[schedule[i][1]]);
                     continue;
                 }
+
+                vtubers.push(VTUBER_LIST[schedule[i][1]]);
+            }
+        }
+
+        var found = [];
+        var retry = 2;
+        while(retry != 0){
+            for(search in vtubers){
                 await youtube.search.list({
                     "part": [
                         "snippet"
                     ],
                     "eventType": "live",
                     "maxResults": 1,
-                    "q": VTUBER_LIST[schedule[i][1]],
+                    "q": search,
                     "type": [
                         "video"
                     ]
                 }).then(response => {
-                    console.log("Vtuber trovata:"+VTUBER_LIST[schedule[i][1]]);
                     if(response.data.items.length == 0) return;
                     var videoId = response.data.items[0].id.videoId;
                     //TODO:Evitare livestram delle chiese
                     if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg" || videoId == "EooOWujmgbg") return;
                     var url = `https://youtube.com/watch?v=${videoId}`;
-                    var name = VTUBER_LIST[schedule[i][1]].split(" ");
+                    var name = search.split(" ");
                     found.push(`${name[0]} è in live!\n${url}`);
+                    //remove from array
+                    vtubers.splice(vtubers.indexOf(search), 1);
                     return;
                 }, err => {
                     console.log("Errore nell'esecuzione:"+err);
@@ -49,8 +60,12 @@ class Vtuber{
                     console.error(error);
                 });
             }
+            
+            if(vtubers.length == 0) break;
+            retry--;
+            //wait 15s before retry
+            await new Promise(r => setTimeout(r, 15000));
         }
-
         return found;
     }
 }
