@@ -15,7 +15,7 @@ for(const file of commandFiles){
 }
 
 client.once('ready', () => {
-    let timeout = 1 * 60 * 1000;
+    let timeout = 10 * 60 * 1000;
     sendLive(timeout);
 });
 
