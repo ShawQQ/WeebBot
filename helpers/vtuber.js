@@ -37,7 +37,8 @@ class Vtuber{
                     console.log("Vtuber trovata:"+VTUBER_LIST[schedule[i][1]]);
                     if(response.data.items.length == 0) return;
                     var videoId = response.data.items[0].id.videoId;
-                    if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg") return;
+                    //TODO:Evitare livestram delle chiese
+                    if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg" || videoId == "EooOWujmgbg") return;
                     var url = `https://youtube.com/watch?v=${videoId}`;
                     var name = VTUBER_LIST[schedule[i][1]].split(" ");
                     found.push(`${name[0]} è in live!\n${url}`);
