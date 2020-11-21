@@ -15,7 +15,7 @@ class Vtuber{
         var hour = parseInt(now.substr(0, 2)) * 60 + parseInt(now.substr(3, 5));
         var vtubers = [];
         console.log(now);
-
+        console.log(schedule);
         for(let i = 0; i < schedule.length; i++){
             //schedule hour
             var scheduleHour = parseInt(schedule[i][0].substr(0, 2)) * 60 + parseInt(schedule[i][0].substr(3, 5));
