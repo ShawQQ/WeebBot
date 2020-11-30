@@ -83,7 +83,7 @@ async function sendLive(timeout){
                         console.log("Message:"+message);
                     }
                     mess +=`<@${config.monsterWeeb}> <@${config.danielito}>`
-                    channel.send(mess).then(msg => {
+                    await channel.send(mess).then(msg => {
                         msg.react('782749911346970654');
                         msg.react('782749883207254016');
                         msg.react('782750403111682059');
