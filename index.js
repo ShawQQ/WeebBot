@@ -84,8 +84,10 @@ async function sendLive(timeout){
                     }
                     mess +=`<@${config.monsterWeeb}> <@${config.danielito}>`
                     channel.send(mess).then(msg => {
-                        //react with pog
-                        msg.react('781904418852831282');
+                        msg.react('782749911346970654');
+                        msg.react('782749883207254016');
+                        msg.react('782750403111682059');
+                        msg.react('782751317831057408');
                     });
                     return;
                 }
