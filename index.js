@@ -75,7 +75,7 @@ async function sendLive(timeout){
     setInterval(async () => {
         await scraper.init().then(async () => {
             var vtuber = new Vtuber();
-            await vtuber.init(scraper.formatedSchedule, timeout).then((result) => {
+            await vtuber.init(scraper.formatedSchedule, timeout).then(async (result) => {
                 if(result.length != 0){
                     var mess = '';
                     for(var message of result){
