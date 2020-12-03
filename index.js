@@ -9,7 +9,7 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for(const file of commandFiles){
+for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
@@ -18,6 +18,44 @@ client.once('ready', () => {
     let timeout = 10 * 60 * 1000;
     sendLive(timeout);
 });
+
+client.login(process.env.DS_TOKEN);
+
+async function sendLive(timeout) {
+    const channel = client.channels.cache.get(config.channel_id);
+    if (!channel) return console.error("Canale non trovato");
+    var scraper = new Scraper();
+    setInterval(async () => {
+        await scraper.init()
+            .then(async () => {
+                var vtuber = new Vtuber();
+                await vtuber.init(scraper.formatedSchedule, timeout)
+                    .then(async (result) => {
+                        if (result.length != 0) {
+                            var mess = '';
+                            for (var message of result) {
+                                mess += message + "\n";
+                                console.log("Message:" + message);
+                            }
+                            mess += `<@${config.monsterWeeb}> <@${config.danielito}>`
+                            await channel.send(mess)
+                                .then(msg => {
+                                    for(emoji of config.emojis){
+                                        msg.react(emoji)
+                                            .catch(e => {
+                                                console.log(e);
+                                            });
+                                    }
+                                });
+                            return;
+                        }
+                        console.log("Nessuna live trovata, riprovo tra:" + timeout);
+                        return;
+                    });
+                return;
+            });
+    }, timeout)
+}
 
 
 //command handler
@@ -64,37 +102,3 @@ client.once('ready', () => {
 //         console.error(error);
 //     }
 // });
-
-
-client.login(process.env.DS_TOKEN);
-
-async function sendLive(timeout){
-    const channel = client.channels.cache.get(config.channel_id);
-    if(!channel) return console.error("Canale non trovato");
-    var scraper = new Scraper();
-    setInterval(async () => {
-        await scraper.init().then(async () => {
-            var vtuber = new Vtuber();
-            await vtuber.init(scraper.formatedSchedule, timeout).then(async (result) => {
-                if(result.length != 0){
-                    var mess = '';
-                    for(var message of result){
-                        mess += message + "\n";
-                        console.log("Message:"+message);
-                    }
-                    mess +=`<@${config.monsterWeeb}> <@${config.danielito}>`
-                    await channel.send(mess).then(msg => {
-                        msg.react('782749911346970654');
-                        msg.react('782749883207254016');
-                        msg.react('782750403111682059');
-                        msg.react('782751317831057408');
-                    });
-                    return;
-                }
-                console.log("Nessuna live trovata, riprovo tra:"+timeout);
-                return;
-            });
-        return;
-        });
-    }, timeout)
-}
