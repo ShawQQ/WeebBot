@@ -1,7 +1,6 @@
 const config = require('./config.json');
 const Discord = require('discord.js');
 const fs = require('fs');
-const { setIntervalAsync } = require('set-interval-async/fixed')
 const { Scraper } = require('./helpers/scraper');
 const { Vtuber } = require('./helpers/vtuber');
 
@@ -60,45 +59,45 @@ async function sendLive(timeout) {
 
 //command handler
 //TODO: implements other commands
-// const cooldowns = new Discord.Collection();
-// 
-// client.on('message', message => {
-//     if(!message.content.startsWith(prefix) || message.author.bot) return;
+const cooldowns = new Discord.Collection();
 
-//     const args = message.content.slice(config.prefix.length).trim().split(' ');
-//     const commandName = args.shift().toLocaleLowerCase();
-//     //check if user is dyslexic
-//     if(!client.commands.has(commandName)){
-//         return message.channel.send("Pog?");
-//     }
+client.on('message', message => {
+    if(!message.content.startsWith(config.prefix) || message.author.bot) return;
 
-//     const command = client.commands.get(commandName);
-//     //check if arg is supplied
-//     if(command.args && !args.length){
-//         return message.channel.send("Pog?");
-//     }
-//     //avoid spam 
-//     if(!cooldowns.has(command.name)){
-//         cooldowns.set(command.name, new Discord.Collection());
-//     }
-//     const now = Date.now();
-//     const timestamps = cooldowns.get(command.name);
-//     const cooldownAMount = (command.cooldown || 3) * 1000;
-//     if(timestamps.has(message.author.id)){
-//         const expirationTime = timestamps.get(message.author.id) + cooldownAMount;
+    const args = message.content.slice(config.prefix.length).trim().split(' ');
+    const commandName = args.shift().toLocaleLowerCase();
+    //check if user is dyslexic
+    if(!client.commands.has(commandName)){
+        return message.channel.send("Pog?");
+    }
 
-//         if(now < expirationTime){
-//             return message.reply("Non spammare diocristo");
-//         }
-//     }
-//     //save the timestamp of the last time the user used the command
-//     timestamps.set(message.author.id, now);
-//     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    const command = client.commands.get(commandName);
+    //check if arg is supplied
+    if(command.args && !args.length){
+        return message.channel.send("Pog?");
+    }
+    //avoid spam 
+    if(!cooldowns.has(command.name)){
+        cooldowns.set(command.name, new Discord.Collection());
+    }
+    const now = Date.now();
+    const timestamps = cooldowns.get(command.name);
+    const cooldownAmount = (command.cooldown || 3) * 1000;
+    if(timestamps.has(message.author.id)){
+        const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
-//     //execute command
-//     try{
-//         command.execute(message, args);
-//     }catch(error){
-//         console.error(error);
-//     }
-// });
+        if(now < expirationTime){
+            return message.reply("Non spammare diocristo");
+        }
+    }
+    //save the timestamp of the last time the user used the command
+    timestamps.set(message.author.id, now);
+    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+
+    //execute command
+    try{
+        command.execute(message, args);
+    }catch(error){
+        console.error(error);
+    }
+});
