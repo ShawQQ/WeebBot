@@ -1,0 +1,15 @@
+module.exports = {
+    name: 'art',
+    description: 'The Kubric Stare',
+    cooldown: 0,
+    execute(message){
+        var fs = require("fs");
+        var text = fs.readFileSync('./kubrick.txt', "utf-8");
+        message.delete(1000);
+        message.channel.send(text, {
+            files: [
+                "./art.png"
+            ]
+        });
+    }
+}
