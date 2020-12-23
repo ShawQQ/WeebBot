@@ -46,7 +46,7 @@ class Vtuber{
                 }).then(response => {
                     if(response.data.items.length == 0) return;
                     var videoId = response.data.items[0].id.videoId;
-                    var channelId = responde.data.items[0].snippet.channelId;
+                    var channelId = response.data.items[0].snippet.channelId;
                     //TODO:Evitare livestram delle chiese
                     if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg" || videoId == "EooOWujmgbg") return;
                     //TODO: Evitare gente a caso
