@@ -32,14 +32,14 @@ class Vtuber{
         var found = [];
         var retry = 2;
         while(retry != 0){
-            for(var search of vtubers){
-                await youtube.search.list({
+            for(var vtuber of vtubers){
+                await youtube.searcg.list({
                     "part": [
                         "snippet"
                     ],
                     "eventType": "live",
                     "maxResults": 1,
-                    "q": search,
+                    "q": vtuber[0],
                     "type": [
                         "video"
                     ]
@@ -47,15 +47,15 @@ class Vtuber{
                     if(response.data.items.length == 0) return;
                     var videoId = response.data.items[0].id.videoId;
                     var channelId = response.data.items[0].snippet.channelId;
-                    //TODO:Evitare livestram delle chiese
-                    if(videoId == "nHRKoNOQ56w" || videoId == "vbrj8fgvfrg" || videoId == "EooOWujmgbg") return;
-                    //TODO: Evitare gente a caso
-                    if(channelId == 'UCH7XUjGiN06GMTYrmB6lIXg') return;
+                    if(channelId != vtuber[1]){
+                        console.log("Canale saltato: "+response.data.items[0].channelTitle);
+                        return;
+                    }
                     var url = `https://youtube.com/watch?v=${videoId}`;
-                    var name = search.split(" ");
+                    var name = vtuber[0].split(" ");
                     found.push(`${name[0]} è in live!\n${url}`);
                     //remove from array
-                    vtubers.splice(vtubers.indexOf(search), 1);
+                    vtubers.splice(vtubers.indexOf(vtuber[0]), 1);
                     return;
                 }, err => {
                     console.log("Errore nell'esecuzione:"+err);
