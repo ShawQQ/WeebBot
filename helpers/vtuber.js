@@ -33,7 +33,7 @@ class Vtuber{
         var retry = 2;
         while(retry != 0){
             for(var vtuber of vtubers){
-                await youtube.searcg.list({
+                await youtube.search.list({
                     "part": [
                         "snippet"
                     ],
