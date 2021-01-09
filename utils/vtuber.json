@@ -1,39 +1,150 @@
 {
-    "sora": "SoraCh. ときのそらチャンネル",
-    "roboco": "Roboco Ch. - ロボ子",
-    "mel": "Mel Channel 夜空メルチャンネル",
-    "haato": "Haachama Ch. 赤井はあと",
-    "akirose": "アキロゼCh。Vtuber/ホロライブ所属",
-    "matsuri": "Matsuri Channel 夏色まつり",
-    "fubuki": "フブキCh。白上フブキ",
-    "aqua": "Aqua Ch. 湊あくあ",
-    "shion": "Shion Ch. 紫咲シオン",
-    "ayame": "Nakiri Ayame Ch. 百鬼あやめ",
-    "choco": "Choco Ch. 癒月ちょこ",
-    "azki": "AZKi Channel",
-    "mio": "Mio Channel 大神ミオ",
-    "subaru": "Subaru Ch. 大空スバル",
-    "miko": "Miko Ch. さくらみこ",
-    "okayu": "Okayu Ch. 猫又おかゆ",
-    "korone": "Korone Ch. 戌神ころね",
-    "suisei": "Suisei Channel",
-    "pekora": "Pekora Ch. 兎田ぺこら",
-    "rushia": "Rushia Ch. 潤羽るしあ",
-    "flare": "Flare Ch. 不知火フレア",
-    "noel": "Noel Ch. 白銀ノエル",
-    "marine": "Marine Ch. 宝鐘マリン",
-    "watame": "Watame Ch. 角巻わため",
-    "towa": "Towa Ch. 常闇トワ",
-    "coco": "Coco Ch. 桐生ココ",
-    "kanata": "Kanata Ch. 天音かなた",
-    "luna": "Luna Ch. 姫森ルーナ",
-    "lamy": "Lamy Ch. 雪花ラミィ",
-    "nene": "Nene Ch.桃鈴ねね",
-    "botan": "Botan Ch.獅白ぼたん",
-    "polka": "Polka Ch. 尾丸ポルカ",
-    "mori": "Mori Calliope Ch. hololive-EN",
-    "kiara": "Takanashi Kiara Ch. hololive-EN",
-    "gura": "Gawr Gura Ch. hololive-EN",
-    "ina": "Ninomae Ina'nis Ch. hololive-EN",
-    "amelia": "Watson Amelia Ch. hololive-EN"
+    "sora": [
+        "SoraCh. ときのそらチャンネル",
+        "UCp6993wxpyDPHUpavwDFqgg"
+        ],
+    "roboco": [
+        "Roboco Ch. - ロボ子",
+        "UCDqI2jOz0weumE8s7paEk6g"
+        ],
+    "mel": [
+        "Mel Channel 夜空メルチャンネル",
+        "UCD8HOxPs4Xvsm8H0ZxXGiBw"
+        ],
+    "haato": [
+        "Haachama Ch. 赤井はあと",
+        "UC1CfXB_kRs3C-zaeTG3oGyg"
+        ],
+    "akirose": [
+        "アキロゼCh。Vtuber/ホロライブ所属",
+        "UCFTLzh12_nrtzqBPsTCqenA"
+        ],
+    "matsuri": [
+        "Matsuri Channel 夏色まつり",
+        "UCQ0UDLQCjY0rmuxCDE38FGg"
+        ],
+    "fubuki": [
+        "フブキCh。白上フブキ",
+        "UCdn5BQ06XqgXoAxIhbqw5Rg"
+        ],
+    "aqua": [
+        "Aqua Ch. 湊あくあ",
+        "UC1opHUrw8rvnsadT-iGp7Cg"
+        ],
+    "shion": [
+        "Shion Ch. 紫咲シオン",
+        "UCXTpFs_3PqI41qX2d9tL2Rw"
+        ],
+    "ayame": [
+        "Nakiri Ayame Ch. 百鬼あやめ",
+        "UC7fk0CB07ly8oSl0aqKkqFg"
+        ],
+    "choco": [
+        "Choco Ch. 癒月ちょこ",
+        "UC1suqwovbL1kzsoaZgFZLKg"
+        ],
+    "azki": [
+        "AZKi Channel",
+        "UC0TXe_LYZ4scaW2XMyi5_kw"
+        ],
+    "mio": [
+        "Mio Channel 大神ミオ",
+        "UCp-5t9SrOQwXMU7iIjQfARg"
+        ],
+    "subaru": [
+        "Subaru Ch. 大空スバル",
+        "UCvzGlP9oQwU--Y0r9id_jnA"
+        ],
+    "miko": [
+        "Miko Ch. さくらみこ",
+        "UC-hM6YJuNYVAmUWxeIr9FeA"
+        ],
+    "okayu": [
+        "Okayu Ch. 猫又おかゆ",
+        "UCvaTdHTWBGv3MKj3KVqJVCw"
+        ],
+    "korone": [
+        "Korone Ch. 戌神ころね",
+        "UChAnqc_AY5_I3Px5dig3X1Q"
+        ],
+    "suisei": [
+        "Suisei Channel",
+        "UC5CwaMl1eIgY8h02uZw7u8A"
+        ],
+    "pekora": [
+        "Pekora Ch. 兎田ぺこら",
+        "UC1DCedRgGHBdm81E1llLhOQ"
+        ],
+    "rushia": [
+        "Rushia Ch. 潤羽るしあ",
+        "UCl_gCybOJRIgOXw6Qb4qJzQ"
+        ],
+    "flare": [
+        "Flare Ch. 不知火フレア",
+        "UCvInZx9h3jC2JzsIzoOebWg"
+        ],
+    "noel": [
+        "Noel Ch. 白銀ノエル",
+        "UCdyqAaZDKHXg4Ahi7VENThQ"
+        ],
+    "marine": [
+        "Marine Ch. 宝鐘マリン",
+        "UCCzUftO8KOVkV4wQG1vkUvg"
+        ],
+    "watame": [
+        "Watame Ch. 角巻わため",
+        "UCqm3BQLlJfvkTsX_hvm0UmA"
+        ],
+    "towa": [
+        "Towa Ch. 常闇トワ",
+        "UC1uv2Oq6kNxgATlCiez59hw"
+        ],
+    "coco": [
+        "Coco Ch. 桐生ココ",
+        "UCS9uQI-jC3DE0L4IpXyvr6w"
+        ],
+    "kanata": [
+        "Kanata Ch. 天音かなた",
+        "UCZlDXzGoo7d44bwdNObFacg"
+        ],
+    "luna": [
+        "Luna Ch. 姫森ルーナ",
+        "UCa9Y57gfeY0Zro_noHRVrnw"
+        ],
+    "lamy": [
+        "Lamy Ch. 雪花ラミィ",
+        "UCFKOVgVbGmX65RxO3EtH3iw"
+        ],
+    "nene": [
+        "Nene Ch.桃鈴ねね",
+        "UCAWSyEs_Io8MtpY3m-zqILA"
+        ],
+    "botan": [
+        "Botan Ch.獅白ぼたん",
+        "UCUKD-uaobj9jiqB-VXt71mA"
+        ],
+    "polka": [
+        "Polka Ch. 尾丸ポルカ",
+        "UCK9V2B22uJYu3N7eR_BT9QA"
+        ],
+    "mori": [
+        "Mori Calliope Ch. hololive-EN",
+        "UCL_qhgtOy0dy1Agp8vkySQg"
+        ],
+    "kiara": [
+        "Takanashi Kiara Ch. hololive-EN",
+        "UCHsx4Hqa-1ORjQTh9TYDhww"
+        ],
+    "gura": [
+        "Gawr Gura Ch. hololive-EN",
+        "UCoSrY_IQQVpmIRZ9Xf-y93g"
+        ],
+    "ina": [
+        "Ninomae Ina'nis Ch. hololive-EN",
+        "UCMwGHR0BTZuLsmjY_NT5Pwg"
+        ],
+    "amelia": [
+        "Watson Amelia Ch. hololive-EN",
+        "UCyl1z3jo3XHR1riLFKG5UAg"
+    ]
 }
