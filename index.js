@@ -29,8 +29,6 @@ async function sendLive(timeout) {
             let current = client.channels.cache.get(channel.id);
             current.send(mess)
                 .then(msg => {
-                    if(channel.emojis === undefined) return;
-
                     for(emoji of channel.emojis){
                         msg.react(emoji).catch(e => {
                             console.log("Errore nell'invio dell'emoji:" + e);
