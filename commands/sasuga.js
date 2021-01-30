@@ -4,10 +4,11 @@ module.exports = {
     cooldown: 0,
     execute(message, args){
         var fs = require("fs");
-        var text = fs.readFileSync('./various/maedasensei.txt', "utf-8");
+        const path = require("path")
+        var text = fs.readFileSync(path.resolve(__dirname, './various/maedasensei.txt'), "utf-8");
         message.channel.send(text, {
             files: [
-                "./various/maeda.png"
+                path.resolve(__dirname, "./various/maeda.png")
             ]
         });
     }

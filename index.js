@@ -24,6 +24,7 @@ async function sendLive(timeout) {
     let channels = config.channels;
     setInterval(async () => {
         let mess = await getMessage();
+        if(!mess) return;
         for(channel of channels){
             let current = client.channels.cache.get(channel.id);
             current.send(mess)
