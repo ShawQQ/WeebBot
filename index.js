@@ -36,7 +36,6 @@ async function sendLive(timeout) {
                                 mess += message + "\n";
                                 console.log("Message:" + message);
                             }
-                            mess += `<@${config.monsterWeeb}> <@${config.danielito}>`
                             await channel.send(mess)
                                 .then(msg => {
                                     for(emoji of config.emojis){
