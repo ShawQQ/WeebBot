@@ -54,6 +54,9 @@ async function getMessage(){
                 }
                 console.log("Nessuna live trovata, riprovo tra:" + timeout);
                 return;
+            })
+            .catch(e => {
+                console.log(e);
             });
         return;
     });
