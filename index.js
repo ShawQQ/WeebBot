@@ -21,48 +21,53 @@ client.once('ready', () => {
 client.login(process.env.DS_TOKEN);
 
 async function sendLive(timeout) {
-    const channel = client.channels.cache.get(config.channel_id);
-    if (!channel) return console.error("Canale non trovato");
-    var scraper = new Scraper();
+    let channels = config.channels;
     setInterval(async () => {
-        await scraper.init()
-            .then(async () => {
-                var vtuber = new Vtuber();
-                await vtuber.init(scraper.formatedSchedule, timeout)
-                    .then(async (result) => {
-                        if (result.length != 0) {
-                            var mess = '';
-                            for (var message of result) {
-                                mess += message + "\n";
-                                console.log("Message:" + message);
-                            }
-                            await channel.send(mess)
-                                .then(msg => {
-                                    for(emoji of config.emojis){
-                                        msg.react(emoji)
-                                            .catch(e => {
-                                                console.log(e);
-                                            });
-                                    }
-                                });
-                            return;
-                        }
-                        console.log("Nessuna live trovata, riprovo tra:" + timeout);
-                        return;
-                    });
-                return;
-            });
+        let mess = await getMessage();
+        for(channel of channels){
+            let current = client.channels.cache.get(channel.id);
+            current.send(mess)
+                .then(msg => {
+                    if(channel.emojis === undefined) return;
+
+                    for(emoji of channel.emojis){
+                        msg.react(emoji).catch(e => {
+                            console.log("Errore nell'invio dell'emoji:" + e);
+                        });
+                    }
+                });
+        }
     }, timeout)
 }
 
+async function getMessage(){
+    let mess = '';
+    let scraper = new Scraper();
+    scraper.init().then(async () => {
+        let vtuber = new Vtuber();
+        await vtuber.init(scraper.formatedSchedule, timeout)
+            .then(async (result) => {
+                if (result.length != 0) {
+                    for (var message of result) {
+                        mess += message + "\n";
+                        console.log("Message:" + message);
+                    }
+                }
+                console.log("Nessuna live trovata, riprovo tra:" + timeout);
+                return;
+            });
+        return;
+    });
+
+    return mess;
+}
 
 //command handler
-//TODO: implements other commands
 const cooldowns = new Discord.Collection();
 
 client.on('message', message => {
     if(!message.content.startsWith(config.prefix) || message.author.bot) return;
-
+    if(message.author.id != "451423628974751765") return;
     const args = message.content.slice(config.prefix.length).trim().split(' ');
     const commandName = args.shift().toLocaleLowerCase();
     //check if user is dyslexic
