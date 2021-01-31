@@ -51,8 +51,9 @@ async function getMessage(timeout){
                         mess += message + "\n";
                         console.log("Message:" + message);
                     }
+                }else{
+                    console.log("Nessuna live trovata, riprovo tra:" + timeout);
                 }
-                console.log("Nessuna live trovata, riprovo tra:" + timeout);
                 return;
             })
             .catch(e => {
@@ -60,7 +61,7 @@ async function getMessage(timeout){
             });
         return;
     });
-
+    console.log(mess);
     return mess;
 }
 
