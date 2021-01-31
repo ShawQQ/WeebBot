@@ -42,7 +42,7 @@ async function sendLive(timeout) {
 async function getMessage(timeout){
     let mess = '';
     let scraper = new Scraper();
-    scraper.init().then(async () => {
+    await scraper.init().then(async () => {
         let vtuber = new Vtuber();
         await vtuber.init(scraper.formatedSchedule, timeout)
             .then(async (result) => {
@@ -61,7 +61,8 @@ async function getMessage(timeout){
             });
         return;
     });
-    console.log(mess);
+
+    console.log("Message returned: " + mess);
     return mess;
 }
 
