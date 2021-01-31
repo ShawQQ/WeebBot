@@ -28,6 +28,7 @@ async function sendLive(timeout) {
             await vtuber.init(scraper.formatedSchedule, timeout)
                 .then(async (result) => {
                     if (result.length != 0) {
+                        let mess = '';
                         for (var message of result) {
                             mess += message + "\n";
                             console.log("Message:" + message);
