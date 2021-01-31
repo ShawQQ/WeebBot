@@ -23,7 +23,7 @@ client.login(process.env.DS_TOKEN);
 async function sendLive(timeout) {
     let channels = config.channels;
     setInterval(async () => {
-        let mess = await getMessage();
+        let mess = await getMessage(timeout);
         if(!mess) return;
         for(channel of channels){
             let current = client.channels.cache.get(channel.id);
@@ -39,7 +39,7 @@ async function sendLive(timeout) {
     }, timeout)
 }
 
-async function getMessage(){
+async function getMessage(timeout){
     let mess = '';
     let scraper = new Scraper();
     scraper.init().then(async () => {
