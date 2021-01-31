@@ -21,49 +21,41 @@ client.once('ready', () => {
 client.login(process.env.DS_TOKEN);
 
 async function sendLive(timeout) {
-    let channels = config.channels;
     setInterval(async () => {
-        let mess = await getMessage(timeout);
-        if(!mess) return;
-        for(channel of channels){
-            let current = client.channels.cache.get(channel.id);
-            current.send(mess)
-                .then(msg => {
-                    for(emoji of channel.emojis){
-                        msg.react(emoji).catch(e => {
-                            console.log("Errore nell'invio dell'emoji:" + e);
-                        });
+        let scraper = new Scraper();
+        await scraper.init().then(async () => {
+            let vtuber = new Vtuber();
+            await vtuber.init(scraper.formatedSchedule, timeout)
+                .then(async (result) => {
+                    if (result.length != 0) {
+                        for (var message of result) {
+                            mess += message + "\n";
+                            console.log("Message:" + message);
+                        }
+                        let channels = config.channels;
+                        for(channel of channels){
+                            let current = client.channels.cache.get(channel.id);
+                            current.send(mess)
+                                .then(msg => {
+                                    for(emoji of channel.emojis){
+                                        msg.react(emoji).catch(e => {
+                                            console.log("Errore nell'invio dell'emoji:" + e);
+                                        });
+                                    }
+                                });
+                        }
+                        
+                    }else{
+                        console.log("Nessuna live trovata, riprovo tra:" + timeout);
                     }
+                    return;
+                })
+                .catch(e => {
+                    console.log(e);
                 });
-        }
+            return;
+        });
     }, timeout)
-}
-
-async function getMessage(timeout){
-    let mess = '';
-    let scraper = new Scraper();
-    await scraper.init().then(async () => {
-        let vtuber = new Vtuber();
-        await vtuber.init(scraper.formatedSchedule, timeout)
-            .then(async (result) => {
-                if (result.length != 0) {
-                    for (var message of result) {
-                        mess += message + "\n";
-                        console.log("Message:" + message);
-                    }
-                }else{
-                    console.log("Nessuna live trovata, riprovo tra:" + timeout);
-                }
-                return;
-            })
-            .catch(e => {
-                console.log(e);
-            });
-        return;
-    });
-
-    console.log("Message returned: " + mess);
-    return mess;
 }
 
 //command handler
