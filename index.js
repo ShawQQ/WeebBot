@@ -34,7 +34,7 @@ async function sendLive(timeout) {
                             console.log("Message:" + message);
                         }
                         let channels = config.channels;
-                        for(channel of channels){
+                        for(const [key, channel] of Object.entries(channels)){
                             let current = client.channels.cache.get(channel.id);
                             current.send(mess)
                                 .then(msg => {
