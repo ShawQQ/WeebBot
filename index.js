@@ -36,6 +36,7 @@ async function sendLive(timeout) {
                         let channels = config.channels;
                         for(const [key, channel] of Object.entries(channels)){
                             let current = client.channels.cache.get(channel.id);
+                            if(!current) continue;
                             current.send(mess)
                                 .then(msg => {
                                     for(emoji of channel.emojis){
